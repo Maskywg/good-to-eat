@@ -1,467 +1,128 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBA 季後賽戰力深度分析：聖安東尼奧馬刺 vs 奧克拉荷馬雷霆</title>
-    <meta name="description" content="最專業的 NBA 季後賽對決分析！深度解析聖安東尼奧馬刺與奧克拉荷馬雷霆的戰力數據、球星 H2H 對抗、戰術關鍵，並提供互動式季後賽系列賽模擬器。">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <title>東門市場神級老店美食地圖 - 裴社長口袋名單導覽</title>
+    <meta name="description" content="本平台收錄東門市場裴社長推薦的11家神級老店，包含東門赤肉羹、利隆餅店、羅媽媽米粉湯、東門興記與隱藏版脆皮燒肉等，配合互動式地圖與特製美食路線，帶您展開一場台北老市場的舌尖探險。">
+    <!-- Google Fonts: Outfit for English/numbers, Noto Sans TC for Traditional Chinese -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet.js for interactive mapping -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="font-medium">
 
-    <!-- 導覽列 -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo" id="site-logo">
-                <span class="spurs-glow-txt">SPURS</span> <span style="font-style: italic; font-weight: 300; font-size: 16px; margin: 0 4px; color: var(--text-muted);">vs</span> <span class="thunder-glow-txt">THUNDER</span>
+    <!-- Header Panel -->
+    <header class="app-header">
+        <div class="container header-container">
+            <a href="#" class="brand-logo" id="header-logo">
+                <i class="fa-solid fa-map-location-dot brand-icon"></i>
+                <span class="brand-name">東門市場</span>
+                <span class="brand-tag">裴社長美食地圖</span>
             </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#matchup" id="nav-matchup">戰力概覽</a></li>
-                    <li><a href="#stats" id="nav-stats">數據指標</a></li>
-                    <li><a href="#h2h" id="nav-h2h">球星對決</a></li>
-                    <li><a href="#simulator" id="nav-simulator">戰力模擬器</a></li>
-                    <li><a href="#tactical" id="nav-tactical">戰術關鍵</a></li>
-                </ul>
-            </nav>
+            
+            <!-- Accessbility Toolbar -->
+            <div class="accessibility-toolbar">
+                <!-- Font Resize -->
+                <div class="acc-control text-sizer">
+                    <span class="acc-label"><i class="fa-solid fa-text-height"></i> 字型</span>
+                    <button class="size-btn btn-sm" id="btn-font-decrease" aria-label="縮小字體">A-</button>
+                    <button class="size-btn active" id="btn-font-normal" aria-label="一般字體">中</button>
+                    <button class="size-btn btn-lg" id="btn-font-increase" aria-label="放大字體">A+</button>
+                </div>
+                <!-- Theme Toggle -->
+                <button class="theme-toggle-btn" id="btn-toggle-theme" title="切換深淺色主題" aria-label="切換深淺模式">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- 英雄橫幅 Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-tag">
-                2026 NBA 季後賽戰力分析特輯 <span>• SHOWN DOWN</span>
-            </div>
-            <h1 id="hero-title">世代天賦的碰撞<span class="vs">VS</span>新興強權的崛起</h1>
-            <p class="hero-subtitle" id="hero-desc">
-                當「禁區超新星」維克托·溫班亞馬領軍的聖安東尼奧馬刺，碰上由「MVP 挑戰者」謝伊·吉爾傑斯-亞歷山大率領的奧克拉荷馬雷霆。這是一場禁區高度、防守覆蓋率與極致外線防守、速度轉換的頂級博弈。
-            </p>
-        </div>
-    </section>
-
-    <!-- 戰力概覽 Section -->
-    <section class="section container" id="matchup">
-        <div class="matchup-grid">
-            <!-- 馬刺隊卡片 -->
-            <div class="team-card spurs" id="spurs-card">
-                <div class="team-logo-bg">SAS</div>
-                <div class="team-badge" id="spurs-badge">
-                    <i class="fa-solid fa-bolt-lightning" style="transform: rotate(15deg);"></i>
-                </div>
-                <h3 class="team-name">聖安東尼奧馬刺</h3>
-                <div class="team-record" id="spurs-record">西區第 8 種子 (季後賽挑戰者)</div>
-                <div class="team-key-stats">
-                    <div class="stat-item">
-                        <span class="stat-val" id="spurs-stat-off">112.4</span>
-                        <span class="stat-lbl">進攻效率值</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-val" id="spurs-stat-def">110.8</span>
-                        <span class="stat-lbl">防守效率值</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-val" id="spurs-stat-pace">101.5</span>
-                        <span class="stat-lbl">比賽節奏 (Pace)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- VS 分割線 -->
-            <div class="vs-circle-container">
-                <div class="vs-line"></div>
-                <div class="vs-circle" id="vs-circle-middle">VS</div>
-                <div class="vs-line"></div>
-            </div>
-
-            <!-- 雷霆隊卡片 -->
-            <div class="team-card thunder" id="thunder-card">
-                <div class="team-logo-bg">OKC</div>
-                <div class="team-badge" id="thunder-badge">
-                    <i class="fa-solid fa-cloud-showers-heavy"></i>
-                </div>
-                <h3 class="team-name">奧克拉荷馬雷霆</h3>
-                <div class="team-record" id="thunder-record">西區第 1 種子 (例行賽霸主)</div>
-                <div class="team-key-stats">
-                    <div class="stat-item">
-                        <span class="stat-val" id="thunder-stat-off">119.5</span>
-                        <span class="stat-lbl">進攻效率值</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-val" id="thunder-stat-def">111.0</span>
-                        <span class="stat-lbl">防守效率值</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-val" id="thunder-stat-pace">100.2</span>
-                        <span class="stat-lbl">比賽節奏 (Pace)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 數據指標 Section -->
-    <section class="section" id="stats">
-        <div class="container">
-            <div class="section-header">
-                <h2 id="stats-header-title">團隊數據深度對抗</h2>
-                <p id="stats-header-desc">透過六大核心數據指標，透視兩隊在例行賽及近期季後賽所展現的團隊核心統治力。</p>
+    <!-- Main Content Grid -->
+    <main class="app-main">
+        <!-- Sidebar: Filter & List -->
+        <aside class="sidebar" id="sidebar-panel">
+            <div class="sidebar-header">
+                <h1>裴社長推薦神級老店</h1>
+                <p class="subtitle">精選 11 家在地經營數十年的經典美味</p>
             </div>
             
-            <div class="glass-card stats-layout">
-                <!-- 圖表 -->
-                <div class="chart-wrapper">
-                    <canvas id="teamStatsChart"></canvas>
+            <!-- Search & Filters -->
+            <div class="search-filter-section">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="搜尋店名、招牌菜色或關鍵字...">
                 </div>
-                <!-- 數據剖析說明 -->
-                <div class="stats-bullets" id="stats-analysis-list">
-                    <div class="bullet-card">
-                        <div class="bullet-icon spurs-themed">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <div class="bullet-text">
-                            <h4 id="bullet-title-1">馬刺防守禁飛區</h4>
-                            <p id="bullet-desc-1">得益於 Victor Wembanyama 歷史級的防守覆蓋率，馬刺在防守效率及禁區封阻率上極具優勢，能有效壓制對手的禁區得分企圖。</p>
-                        </div>
-                    </div>
-                    <div class="bullet-card">
-                        <div class="bullet-icon thunder-themed">
-                            <i class="fa-solid fa-fire-flame-simple"></i>
-                        </div>
-                        <div class="bullet-text">
-                            <h4 id="bullet-title-2">雷霆極致的進攻效率</h4>
-                            <p id="bullet-desc-2">雷霆高居聯盟前三的進攻效率主要來自 SGA 強悍的突破中距離以及全隊極佳的三分球投射點（3PT% 高達 38.9%），空間感極佳。</p>
-                        </div>
-                    </div>
-                    <div class="bullet-card">
-                        <div class="bullet-icon spurs-themed" style="background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); border-color: rgba(255,255,255,0.1);">
-                            <i class="fa-solid fa-arrows-spin"></i>
-                        </div>
-                        <div class="bullet-text">
-                            <h4 id="bullet-title-3">失誤控制是關鍵分水嶺</h4>
-                            <p id="bullet-desc-3">雷霆是聯盟中最會製造對手失誤並打反擊的隊伍。馬刺年輕的傳導體系若無法嚴格控制失誤，將會給予雷霆海量的轉換快攻機會。</p>
-                        </div>
-                    </div>
+                
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all" id="filter-all">全部</button>
+                    <button class="filter-btn" data-category="staple" id="filter-staple">經典主食</button>
+                    <button class="filter-btn" data-category="snack" id="filter-snack">點心餅類</button>
+                    <button class="filter-btn" data-category="dessert" id="filter-dessert">甜品湯圓</button>
+                    <button class="filter-btn" data-category="hidden" id="filter-hidden">隱藏燒臘</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 球星對決 Section -->
-    <section class="section" id="h2h">
-        <div class="container">
-            <div class="section-header">
-                <h2 id="h2h-header-title">核心領袖與球星對決</h2>
-                <p id="h2h-header-desc">季後賽是巨星的戰場。切換不同對位，查看兩隊關鍵核心在攻防兩端的關鍵數據表現。</p>
-            </div>
-
-            <!-- 球星對決切換 Tab -->
-            <div class="h2h-selector" id="h2h-selector-container">
-                <button class="h2h-tab active" data-matchup="wemby-chet" id="tab-wemby-chet">天賦怪獸之戰 (Wemby vs Chet)</button>
-                <button class="h2h-tab" data-matchup="fox-sga" id="tab-fox-sga">控衛核心火拼 (De'Aaron Fox vs SGA)</button>
-                <button class="h2h-tab" data-matchup="vassell-jDub" id="tab-vassell-jdub">側翼核心對決 (Vassell vs J-Dub)</button>
-            </div>
-
-            <!-- 球星對決卡片 -->
-            <div class="glass-card" style="padding: 40px 24px;">
-                <div class="h2h-panel" id="h2h-data-panel">
-                    <!-- 左球星 (馬刺) -->
-                    <div class="player-profile spurs-player">
-                        <!-- 我們將使用 SVG 來繪製漂亮的預設頭像，若有需要可以使用 CSS 或 API 生成的圖像，這裡使用極簡精美的漸層運動風頭像 -->
-                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #1f2124, #00e5ff); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #fff; font-weight: 900; margin-bottom: 20px; border: 3px solid var(--spurs-teal); box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);" id="left-player-img">WEMBY</div>
-                        <span class="player-num" id="left-player-no">#1</span>
-                        <h4 class="player-name" id="left-player-name">維克托·溫班亞馬</h4>
-                        <span class="player-position" id="left-player-pos">中鋒 (C) / 前鋒 (F)</span>
-                    </div>
-
-                    <!-- 數據比較條 -->
-                    <div class="h2h-bars" id="h2h-stats-bars">
-                        <!-- 數據 1: 得分 -->
-                        <div class="bar-item">
-                            <div class="bar-labels">
-                                <span class="bar-val-left" id="val-left-1">21.4</span>
-                                <span class="bar-title" id="bar-lbl-1">得分 (PTS)</span>
-                                <span class="bar-val-right" id="val-right-1">16.5</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill-left" style="width: 56.4%;" id="fill-left-1"></div>
-                                <div style="flex-grow: 1;"></div>
-                                <div class="bar-fill-right" style="width: 43.6%;" id="fill-right-1"></div>
-                            </div>
-                        </div>
-                        <!-- 數據 2: 籃板 -->
-                        <div class="bar-item">
-                            <div class="bar-labels">
-                                <span class="bar-val-left" id="val-left-2">10.6</span>
-                                <span class="bar-title" id="bar-lbl-2">籃板 (REB)</span>
-                                <span class="bar-val-right" id="val-right-2">7.9</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill-left" style="width: 57.3%;" id="fill-left-2"></div>
-                                <div style="flex-grow: 1;"></div>
-                                <div class="bar-fill-right" style="width: 42.7%;" id="fill-right-2"></div>
-                            </div>
-                        </div>
-                        <!-- 數據 3: 助攻 -->
-                        <div class="bar-item">
-                            <div class="bar-labels">
-                                <span class="bar-val-left" id="val-left-3">3.9</span>
-                                <span class="bar-title" id="bar-lbl-3">助攻 (AST)</span>
-                                <span class="bar-val-right" id="val-right-3">2.4</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill-left" style="width: 61.9%;" id="fill-left-3"></div>
-                                <div style="flex-grow: 1;"></div>
-                                <div class="bar-fill-right" style="width: 38.1%;" id="fill-right-3"></div>
-                            </div>
-                        </div>
-                        <!-- 數據 4: 阻攻 -->
-                        <div class="bar-item">
-                            <div class="bar-labels">
-                                <span class="bar-val-left" id="val-left-4">3.6</span>
-                                <span class="bar-title" id="bar-lbl-4">阻攻 (BLK)</span>
-                                <span class="bar-val-right" id="val-right-4">2.3</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill-left" style="width: 61.0%;" id="fill-left-4"></div>
-                                <div style="flex-grow: 1;"></div>
-                                <div class="bar-fill-right" style="width: 39.0%;" id="fill-right-4"></div>
-                            </div>
-                        </div>
-                        <!-- 數據 5: 命中率 -->
-                        <div class="bar-item">
-                            <div class="bar-labels">
-                                <span class="bar-val-left" id="val-left-5">46.5%</span>
-                                <span class="bar-title" id="bar-lbl-5">投籃命中率 (FG%)</span>
-                                <span class="bar-val-right" id="val-right-5">53.0%</span>
-                            </div>
-                            <div class="bar-container">
-                                <div class="bar-fill-left" style="width: 46.7%;" id="fill-left-5"></div>
-                                <div style="flex-grow: 1;"></div>
-                                <div class="bar-fill-right" style="width: 53.3%;" id="fill-right-5"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 右球星 (雷霆) -->
-                    <div class="player-profile thunder-player">
-                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #002244, #ff6d00); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #fff; font-weight: 900; margin-bottom: 20px; border: 3px solid var(--thunder-orange); box-shadow: 0 0 20px rgba(255, 109, 0, 0.2);" id="right-player-img">CHET</div>
-                        <span class="player-num" id="right-player-no">#7</span>
-                        <h4 class="player-name" id="right-player-name">切特·霍姆葛倫</h4>
-                        <span class="player-position" id="right-player-pos">中鋒 (C) / 前鋒 (F)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 戰力模擬器 Section -->
-    <section class="section" id="simulator">
-        <div class="container">
-            <div class="section-header">
-                <h2 id="sim-header-title">季後賽系列賽模擬器</h2>
-                <p id="sim-header-desc">調整馬刺與雷霆的核心戰力滑桿，親自模擬季後賽系列賽走向！看看不同的戰術加成會如何改變局勢。</p>
-            </div>
-
-            <div class="glass-card simulator-layout">
-                <!-- 左側調整滑桿 -->
-                <div class="sim-sliders" id="sim-sliders-container">
-                    <!-- 滑桿組 1: 進攻實力 -->
-                    <div class="sim-slider-group">
-                        <div class="slider-group-header">
-                            <span class="slider-spurs-title">馬刺進攻</span>
-                            <span>進攻實力 (OFF)</span>
-                            <span class="slider-thunder-title">雷霆進攻</span>
-                        </div>
-                        <div class="slider-track-box">
-                            <div class="slider-control spurs-slider">
-                                <label class="spurs-slider-label">外圍投射 <span id="spurs-off-val">75</span></label>
-                                <input type="range" min="50" max="100" value="75" id="slider-spurs-off">
-                            </div>
-                            <div class="slider-control thunder-slider">
-                                <label class="thunder-slider-label">外圍投射 <span id="thunder-off-val">90</span></label>
-                                <input type="range" min="50" max="100" value="90" id="slider-thunder-off">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 滑桿組 2: 防守壓迫 -->
-                    <div class="sim-slider-group">
-                        <div class="slider-group-header">
-                            <span class="slider-spurs-title">馬刺防守</span>
-                            <span>防守壓迫 (DEF)</span>
-                            <span class="slider-thunder-title">雷霆防守</span>
-                        </div>
-                        <div class="slider-track-box">
-                            <div class="slider-control spurs-slider">
-                                <label class="spurs-slider-label">禁區防禦 <span id="spurs-def-val">88</span></label>
-                                <input type="range" min="50" max="100" value="88" id="slider-spurs-def">
-                            </div>
-                            <div class="slider-control thunder-slider">
-                                <label class="thunder-slider-label">外圍撕裂 <span id="thunder-def-val">82</span></label>
-                                <input type="range" min="50" max="100" value="82" id="slider-thunder-def">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 滑桿組 3: 球星壓制力 -->
-                    <div class="sim-slider-group">
-                        <div class="slider-group-header">
-                            <span class="slider-spurs-title">馬刺球星</span>
-                            <span>明星壓制力 (STARS)</span>
-                            <span class="slider-thunder-title">雷霆球星</span>
-                        </div>
-                        <div class="slider-track-box">
-                            <div class="slider-control spurs-slider">
-                                <label class="spurs-slider-label">Wemby 統治力 <span id="spurs-star-val">92</span></label>
-                                <input type="range" min="50" max="100" value="92" id="slider-spurs-star">
-                            </div>
-                            <div class="slider-control thunder-slider">
-                                <label class="thunder-slider-label">SGA 單兵突破 <span id="thunder-star-val">95</span></label>
-                                <input type="range" min="50" max="100" value="95" id="slider-thunder-star">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 滑桿組 4: 板凳深度與戰術 -->
-                    <div class="sim-slider-group">
-                        <div class="slider-group-header">
-                            <span class="slider-spurs-title">馬刺戰術</span>
-                            <span>板凳與教練 (SYSTEM)</span>
-                            <span class="slider-thunder-title">雷霆戰術</span>
-                        </div>
-                        <div class="slider-track-box">
-                            <div class="slider-control spurs-slider">
-                                <label class="spurs-slider-label">Mitch Johnson 戰術 <span id="spurs-bench-val">80</span></label>
-                                <input type="range" min="50" max="100" value="80" id="slider-spurs-bench">
-                            </div>
-                            <div class="slider-control thunder-slider">
-                                <label class="thunder-slider-label">板凳群深度 <span id="thunder-bench-val">85</span></label>
-                                <input type="range" min="50" max="100" value="85" id="slider-thunder-bench">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 右側模擬儀表板 -->
-                <div class="sim-dashboard" id="sim-dashboard-panel">
-                    <div class="sim-headline" id="sim-status-title">七戰四勝制系列賽模擬</div>
-                    
-                    <!-- 系列賽起點設定器 -->
-                    <div style="margin-bottom: 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; background: rgba(255,255,255,0.03); padding: 8px 16px; border-radius: 50px; border: 1px solid var(--border-color);" id="sim-score-dropdown-container">
-                        <label for="sim-start-score" style="color: var(--text-secondary); font-weight: 600;">起點比分：</label>
-                        <select id="sim-start-score" style="background: var(--bg-dark); color: var(--text-primary); border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 4px; font-weight: 700; cursor: pointer; outline: none; font-family: inherit;">
-                            <option value="1-1" selected>1 : 1 (目前現況)</option>
-                            <option value="0-0">0 : 0 (例行賽剛結束)</option>
-                            <option value="2-1">2 : 1 (馬刺領先)</option>
-                            <option value="1-2">1 : 2 (雷霆領先)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="sim-scoreboard">
-                        <!-- 馬刺得分 -->
-                        <div class="sim-team-score spurs-score">
-                            <div class="sim-score-num" id="score-spurs">1</div>
-                            <span class="sim-score-label">SPURS</span>
-                        </div>
-                        
-                        <div class="sim-colon">:</div>
-                        
-                        <!-- 雷霆得分 -->
-                        <div class="sim-team-score thunder-score">
-                            <div class="sim-score-num" id="score-thunder">1</div>
-                            <span class="sim-score-label">THUNDER</span>
-                        </div>
-                    </div>
-
-                    <button class="sim-btn" id="run-simulation-btn">
-                        <i class="fa-solid fa-gamepad" style="margin-right: 8px;"></i>開始模擬系列賽
+            <!-- Curated Food Trails -->
+            <div class="gourmet-trails">
+                <h3><i class="fa-solid fa-route icon-margin"></i> 推薦老饕路線</h3>
+                <div class="trail-buttons">
+                    <button class="trail-btn" data-trail="trail-classic" id="btn-trail-classic">
+                        <i class="fa-solid fa-award"></i> 經典必吃線
                     </button>
-
-                    <div class="sim-result-details" id="sim-result-text">
-                        <!-- 模擬分析文本與局數記錄 -->
-                    </div>
-                    <div class="sim-game-log" id="sim-game-log-text"></div>
+                    <button class="trail-btn" data-trail="trail-takeaway" id="btn-trail-takeaway">
+                        <i class="fa-solid fa-bag-shopping"></i> 排隊伴手禮線
+                    </button>
+                    <button class="trail-btn" data-trail="trail-hidden" id="btn-trail-hidden">
+                        <i class="fa-solid fa-user-secret"></i> 隱藏美食線
+                    </button>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 戰術關鍵 Section -->
-    <section class="section" id="tactical">
-        <div class="container">
-            <div class="section-header">
-                <h2 id="tac-header-title">季後賽系列賽決勝關鍵</h2>
-                <p id="tac-header-desc">在刺刀見紅的季後賽戰場中，兩隊的總教練與主力班底必須在以下三個核心點上取得優勢，才能奪得晉級門票。</p>
-            </div>
-
-            <div class="glass-card" style="padding: 40px 32px;">
-                <!-- 戰術隊伍切換 Tabs -->
-                <div class="tactical-tabs" id="tac-tab-header">
-                    <div class="tactical-tab active spurs-tab" data-team="spurs" id="tab-tac-spurs">馬刺的勝利之鑰 (SAS Keys)</div>
-                    <div class="tactical-tab thunder-tab" data-team="thunder" id="tab-tac-thunder">雷霆的勝利之鑰 (OKC Keys)</div>
-                </div>
-
-                <!-- 馬刺勝利之鑰 -->
-                <div class="tactical-content active" id="tac-content-spurs">
-                    <div class="tactical-card spurs-tactical-card">
-                        <span class="tac-num">KEY 01</span>
-                        <h3 id="sas-key-h-1">建立「溫班亞馬禁防區」</h3>
-                        <p id="sas-key-p-1">Wemby 必須在防守端化身為雷霆持球突破手的終極噩夢。雷霆以 SGA 的油漆區突破與拋投為核心攻勢，Wemby 的弱側協防與禁區阻攻將直接左右雷霆的進攻效率，迫使雷霆改變進攻線路。</p>
+                <div class="trail-info-box" id="trail-info-card" style="display: none;">
+                    <div class="trail-info-header">
+                        <span class="trail-name" id="trail-name-display">經典必吃線</span>
+                        <button class="btn-close-trail" id="btn-clear-trail" title="清除路線"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="tactical-card spurs-tactical-card">
-                        <span class="tac-num">KEY 02</span>
-                        <h3 id="sas-key-h-2">減速與控制失誤</h3>
-                        <p id="sas-key-p-2">馬刺作為年輕隊伍，傳導失誤率偏高。雷霆是全聯盟最擅長利用對手失誤打快攻轉換得分的球隊。馬刺必須確保每一次進攻的傳球品質，並依靠 De'Aaron Fox 與後衛群掌控半場節奏，堅決打陣地戰以限制雷霆的速度優勢。</p>
-                    </div>
-                    <div class="tactical-card spurs-tactical-card">
-                        <span class="tac-num">KEY 03</span>
-                        <h3 id="sas-key-h-3">底角三分球的把握度</h3>
-                        <p id="sas-key-p-3">雷霆在面對 Wemby 時，極有可能採取包夾或切斷傳球路線的策略。馬刺射手 Devin Vassell 以及板凳射手群必須在外圍，特別是底角防守空檔上，投出超過 38% 的三分球命中率，才能拉開進攻空間。</p>
-                    </div>
-                </div>
-
-                <!-- 雷霆勝利之鑰 -->
-                <div class="tactical-content" id="tac-content-thunder">
-                    <div class="tactical-card thunder-tactical-card">
-                        <span class="tac-num">KEY 01</span>
-                        <h3 id="okc-key-h-1">SGA 的突圍與防守撕裂</h3>
-                        <p id="okc-key-p-1">作為球隊的靈魂，SGA 必須發揮全聯盟最強的單兵中距離與禁區切入能力。即使面對 Wemby 的阻攻威脅，也要利用多變的腳步、假動作和變速來製造犯規，並為埋伏於外線的 Jalen Williams 及 Chet Holmgren 創造底角機會。</p>
-                    </div>
-                    <div class="tactical-card thunder-tactical-card">
-                        <span class="tac-num">KEY 02</span>
-                        <h3 id="okc-key-h-2">把 Wembanyama 拉離禁區</h3>
-                        <p id="okc-key-p-2">Chet Holmgren 具備出色的外線投射能力。雷霆的戰術必須多利用 Chet 做擋拆後彈出（Pick and Pop）至三分線外投射，迫使 Wemby 必須離開油漆區防守。一旦 Wemby 出了禁區，雷霆的後衛群便可肆無忌憚地撕裂馬刺的禁區防禦。</p>
-                    </div>
-                    <div class="tactical-card thunder-tactical-card">
-                        <span class="tac-num">KEY 03</span>
-                        <h3 id="okc-key-h-3">利用高強度壓迫後衛</h3>
-                        <p id="okc-key-p-3">雷霆擁有 Dort、Caruso 等聯盟頂級的外圍防守鎖扣，他們必須全場貼身防守馬刺的持球點，阻斷 Fox 及馬刺後衛群與 Wemby 的空接連線，逼迫馬刺後衛群在急躁中傳球，從而發揮雷霆最引以為傲的攻守轉換快攻。</p>
+                    <p class="trail-desc" id="trail-desc-display">依序探索最在地的老台北風味，涵蓋主食與甜點。</p>
+                    <div class="trail-steps" id="trail-steps-display">
+                        <!-- Dynamic Steps -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 頁尾 -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">
-                <span class="spurs-glow-txt" style="color: var(--spurs-teal);">SPURS</span> <span style="font-style: italic; font-weight: 300; font-size: 14px; color: var(--text-muted);">vs</span> <span class="thunder-glow-txt" style="color: var(--thunder-orange);">THUNDER</span> 戰力分析中心
+            <!-- List Count and Reset -->
+            <div class="list-summary-bar">
+                <span id="shop-count">顯示 11 家店</span>
+                <button class="btn-text-link" id="btn-reset-filters" style="display: none;">重設篩選</button>
             </div>
-            <div class="footer-copy" id="footer-copy-text">
-                &copy; 2026 NBA Playoff Showdown Hub. 本網頁為戰力深度解析平台，數據與戰術均為專業模型與專家模擬結果。
-            </div>
-        </div>
-    </footer>
 
-    <!-- 引入自訂 JS -->
+            <!-- Cards Container -->
+            <div class="cards-container" id="food-cards-list" role="list">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </aside>
+
+        <!-- Map Pane -->
+        <section class="map-pane">
+            <!-- Mobile Toggle Bar: Switch between List and Map view -->
+            <div class="mobile-toggle-nav">
+                <button class="mobile-nav-btn active" id="btn-show-list">
+                    <i class="fa-solid fa-list-ul"></i> 列表清單
+                </button>
+                <button class="mobile-nav-btn" id="btn-show-map">
+                    <i class="fa-solid fa-map-location-dot"></i> 互動地圖
+                </button>
+            </div>
+            
+            <!-- Map Container -->
+            <div id="map" aria-label="東門市場互動美食地圖"></div>
+        </section>
+    </main>
+
+    <!-- JS Logic Entrance -->
     <script src="app.js"></script>
 </body>
 </html>
