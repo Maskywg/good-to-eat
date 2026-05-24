@@ -910,3 +910,66 @@ button {
         display: none;
     }
 }
+
+/* Mayor's Trivia Box */
+.mayor-trivia-box {
+    margin: 12px 24px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, var(--accent-light) 0%, rgba(254, 243, 199, 0.4) 100%);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .mayor-trivia-box {
+    background: linear-gradient(135deg, #38240c 0%, rgba(69, 48, 21, 0.4) 100%);
+    border-color: rgba(251, 191, 36, 0.2);
+}
+
+.mayor-trivia-box:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+.trivia-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 900;
+    font-size: 13px;
+    color: var(--accent);
+}
+
+[data-theme="dark"] .trivia-header {
+    color: var(--color-snack);
+}
+
+.trivia-icon {
+    font-size: 14px;
+    animation: bounce 2s infinite;
+}
+
+.trivia-content {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.trivia-content strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+[data-theme="dark"] .trivia-content strong {
+    color: var(--color-staple);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+

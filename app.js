@@ -1,179 +1,124 @@
-// --- Dongmen Market Food Map Core Data ---
+// --- Dadaocheng and Taipei City Center Food Map Core Data ---
 
 const shopsData = [
     {
-        id: "red-pork-soup",
-        name: "東門赤肉羹",
-        alias: "影片音譯：吃肉根",
-        category: "staple",
-        categoryName: "經典主食",
-        tag: "在地經營超過30年",
-        signature: "赤肉羹、滷肉飯",
-        desc: "招牌赤肉羹使用整塊厚實的豬大腿肉手工製作，口感極具咬勁與彈性。柴魚提味的湯頭甘甜鮮美；此外，淋上濃郁手切滷汁的古早味滷肉飯也深受在地居民喜愛。",
-        videoTime: "01:05 - 02:10",
-        address: "台北市中正區臨沂街56-2號",
-        lat: 25.03463,
-        lng: 121.52862
-    },
-    {
-        id: "lilong-bakery",
-        name: "利隆餅店",
-        alias: "影片音譯：利容餅店",
-        category: "snack",
-        categoryName: "點心餅類",
-        tag: "傳承三代排隊名店",
-        signature: "蘿蔔絲餅、豬肉餡餅、高麗菜餅",
-        desc: "傳承至第三代、經營30多年的中正老字號。現場手工擀皮烤製，皮薄內餡爆汁。高麗菜餅做法類似韭菜盒且包入大量冬粉，豬肉與牛肉餅香濃多汁，是下午茶點心首選。",
-        videoTime: "02:15 - 03:15",
-        address: "台北市中正區信義路二段81號 (巷內)",
-        lat: 25.03433,
-        lng: 121.52885
-    },
-    {
-        id: "luomama-noodles",
-        name: "羅媽媽米粉湯",
-        alias: "影片音譯：羅媽媽米粉湯",
-        category: "staple",
-        categoryName: "經典主食",
-        tag: "營業50多年客家老店",
-        signature: "客家米粉湯、黑白切生腸、大腸",
-        desc: "經營逾半世紀的傳統客家味。粗米粉久煮不爛，大骨湯頭熬煮得極為濃郁且甜腴。裴社長與老闆強烈推薦搭配大腸沾醋薑絲，或是口感爽脆乾淨的生腸。",
-        videoTime: "03:20 - 04:10",
-        address: "台北市中正區信義路二段81號 (東門市場18號攤位)",
-        lat: 25.03444,
-        lng: 121.52899
-    },
-    {
-        id: "dongmen-rice",
-        name: "東門城滷肉飯",
-        alias: "影片音譯：東門城滷肉飯",
-        category: "staple",
-        categoryName: "經典主食",
-        tag: "一甲子三代傳承老店",
-        signature: "老滷滷肉飯、Q彈豬皮",
-        desc: "傳承三代超過60年的市場代表店。其滷肉飯堅持使用老滷熬煮，純手工切肉，完全不加五香粉或中藥包，醬香深郁且入味。富含膠質、Q彈有嚼勁的滷豬皮是老饕必點。",
-        videoTime: "04:15 - 05:05",
-        address: "台北市中正區信義路二段87-1號 (東門市場內)",
-        lat: 25.03452,
-        lng: 121.52908
-    },
-    {
-        id: "jiang-tofu",
-        name: "江記東門豆花",
-        alias: "影片音譯：江東門豆花",
+        id: "aka-cafe",
+        name: "AKA café",
+        alias: "郭烏隆私宅下午茶",
         category: "dessert",
-        categoryName: "甜品湯圓",
-        tag: "傳承五十年古早風味",
-        signature: "手作花生豆花、薑糖糖水",
-        desc: "極受歡迎的傳統點心，特色是冰豆花搭配手工慢火熬煮的鬆軟飽滿大花生。搭配帶有古法黑糖與微辣薑糖香氣的獨門糖水，口感綿密細緻，入口即化。",
-        videoTime: "05:10 - 06:05",
-        address: "台北市中正區金山南路一段142巷5號",
-        lat: 25.03498,
-        lng: 121.52950
+        categoryName: "老宅茶點",
+        tag: "百年首富私宅中庭",
+        signature: "糕點、肉乾與梅子",
+        desc: "隱身於迪化街民樂街巷弄、日治時期富商郭烏隆之百年私宅。在中庭的巴洛克老洋樓與優雅小水池旁，享用結合大稻埕南北貨特色的點心（包含經典糕點、香Q肉乾與梅子），感受大稻埕歷史底蘊的獨特魅力。",
+        videoTime: "00:00 - 02:00",
+        address: "台北市大同區民樂街66號後棟",
+        lat: 25.0566,
+        lng: 121.5085
     },
     {
-        id: "xingji-dumpling",
-        name: "東門興記",
-        alias: "影片音譯：東門星際",
+        id: "yuyubiao",
+        name: "慈聖宮「魷魚標」",
+        alias: "祖傳清燙發泡魷魚",
         category: "snack",
-        categoryName: "點心餅類",
-        tag: "影星林青霞最愛水餃",
-        signature: "手工高麗菜水餃、菜肉包、春捲",
-        desc: "原為港式點心起家，現以手工冷凍水餃及熟食包子聞名全台。林青霞回台必打包。菜肉包料多扎實，即使放涼後肥肉丁依然晶瑩如白玉；素高麗菜水餃爽脆甜美，亦是極品。",
-        videoTime: "06:10 - 07:05",
-        address: "台北市中正區金山南路一段120號",
-        lat: 25.03464,
-        lng: 121.52959
+        categoryName: "廟口小吃",
+        tag: "手工堅持親自發泡",
+        signature: "清燙魷魚",
+        desc: "大稻埕慈聖宮前的元老級攤位。老闆堅持親自動手長時間發泡乾魷魚，拒絕使用工廠批量貨，因此保留了厚實肉質、濃郁香氣與無比彈牙的Q彈口感。沾醬由桔醬、醋、蒜與醬油膏特調，搭配香菜更對味。",
+        videoTime: "02:00 - 04:10",
+        address: "台北市大同區保安街49巷17號",
+        lat: 25.0602,
+        lng: 121.5121
     },
     {
-        id: "fujiu-tangyuan",
-        name: "富久湯圓大王",
-        alias: "影片音譯：副酒湯圓",
-        category: "dessert",
-        categoryName: "甜品湯圓",
-        tag: "爆汁鮮肉湯圓",
-        signature: "鮮肉湯圓、海鮮小菜、椒麻麵",
-        desc: "招牌為外皮如白玉般滑嫩、咬下會爆出香濃肉汁的鮮肉湯圓。由於第一代老闆是基隆人，結合海鮮絕活，店內同步販售生魚片等級的限量海鮮小菜與特製香辣椒麻麵。",
-        videoTime: "07:10 - 08:05",
-        address: "台北市中正區臨沂街84巷7號",
-        lat: 25.03362,
-        lng: 121.52800
-    },
-    {
-        id: "mashu-pastry",
-        name: "清真馬叔餅舖",
-        alias: "影片音譯：馬薯餅布",
+        id: "lai-jijuan",
+        name: "慈聖宮雞捲",
+        alias: "大稻埕保安街雞捲",
         category: "snack",
-        categoryName: "點心餅類",
-        tag: "幾十年堅持清晨手工現做",
-        signature: "芝麻醬燒餅夾牛肉、桂花酸梅湯",
-        desc: "老字號清真館。每天凌晨四點手工製作千層芝麻醬燒餅，餅皮外脆內軟、夾入冷醬牛肉，層次感極豐富。配上一碗店內特熬帶有淡淡花香的桂花酸梅湯，極為享受。",
-        videoTime: "08:10 - 09:05",
-        address: "台北市中正區臨沂街67-2號",
-        lat: 25.03459,
-        lng: 121.52843
+        categoryName: "廟口小吃",
+        tag: "包有海鰻的鮮美古早味",
+        signature: "古早味雞捲",
+        desc: "慈聖宮前知名的「賴記雞捲」。有別於傳統全豬肉內餡，這家雞捲包入了大塊肥美卻不油不膩的海鰻，口感層次極其豐富。外皮使用腐皮炸至黃金酥脆，是廟口人氣最高的老味道之一。",
+        videoTime: "04:10 - 04:30",
+        address: "台北市大同區保安街49巷17號",
+        lat: 25.0603,
+        lng: 121.5124
     },
     {
-        id: "secret-roast",
-        name: "東門御園坊",
-        alias: "影片未公開店名，實為東門御園坊",
-        category: "hidden",
-        categoryName: "隱藏燒臘",
-        tag: "排隊名店 / 蘋果日報評比冠軍",
-        signature: "廣式油蔥配燒鴨、脆皮燒肉、手工水餃",
-        desc: "曾獲選蘋果日報年菜評比冠軍的手工水餃名店。其熟食部特製的廣式油蔥醬搭配鮮嫩多汁的燒鴨是裴社長極力推薦的私房美味，連台北市長也是這家脆皮燒肉的忠實常客。",
-        videoTime: "09:08 - 09:28",
-        address: "台北市中正區信義路二段79巷13號",
-        lat: 25.03471,
-        lng: 121.52887
+        id: "tongzai-rice",
+        name: "大橋頭筒仔米糕",
+        alias: "老牌筒仔米糕",
+        category: "staple",
+        categoryName: "經典主食",
+        tag: "米其林必比登推薦",
+        signature: "筒仔米糕、滷蛋",
+        desc: "延三夜市一帶的50年老店。主打與南部加肉燥不同的「台北口味」，直接將瘦肉或肥肉鋪在糯米上方蒸熟。米粒軟糯入味，推薦搭配特製蘿蔔乾辣椒醬、滷蛋，口感更加升級。",
+        videoTime: "04:30 - 05:00",
+        address: "台北市大同區延平北路三段41號",
+        lat: 25.0648,
+        lng: 121.5112
     },
     {
-        id: "secret-crispy",
-        name: "隱藏版脆皮燒肉小店",
-        alias: "每日限量秒殺傳奇",
-        category: "hidden",
-        categoryName: "隱藏燒臘",
-        tag: "凌晨4點起火烤製4小時",
-        signature: "限量脆皮燒肉 (9:30出爐)",
-        desc: "東門市場內的秒殺級熟食攤。老闆每天清晨四點開爐烤製，堅持四個小時的慢火細烤，只為了烤出肥瘦黃金比例、金黃酥脆的皮與軟嫩肉質。早上09:30準時出爐，通常半小時內即被搶購一空。",
-        videoTime: "09:30 - 10:00",
-        address: "台北市中正區信義路二段 (東門市場內排隊熟食攤)",
-        lat: 25.03473,
-        lng: 121.52912
+        id: "hailu-soup",
+        name: "大橋頭海陸湯",
+        alias: "元氣滿滿海陸湯",
+        category: "hidden", // We map 'hidden' category to '鮮美湯品'
+        categoryName: "鮮美湯品",
+        tag: "做苦力工人的精力泉源",
+        signature: "豬肝蚵仔海陸湯",
+        desc: "早年為了給辛勤做苦力的勞工補充精力而誕生。湯頭以大骨熬製，用料極度實在。湯裡盛裝厚切軟嫩的豬肝以及數量極多、大顆飽滿的鮮美蚵仔，是搭配筒仔米糕的老饕黃金拍檔。",
+        videoTime: "05:00 - 05:20",
+        address: "台北市大同區延平北路三段41號",
+        lat: 25.0649,
+        lng: 121.5110
     },
     {
-        id: "xinyuan-halal",
-        name: "信遠齋",
-        alias: "影片音譯：信遠災",
-        category: "hidden",
-        categoryName: "隱藏燒臘",
-        tag: "外省風味老字號滷味",
-        signature: "煙燻雞腿、鴨蛋、素雞、里肌肉",
-        desc: "雖與市場主核心區有段小距離，但仍屬東門商圈。承襲老北京滷味手藝，其滷汁中藥香回甘。煙燻雞腿香氣入鼻、鴨蛋與素雞滷至骨子裡，完全不需搭配任何沾醬便已極具風味。",
-        videoTime: "10:05 - 11:00",
-        address: "台北市大安區新生南路一段165巷18號",
-        lat: 25.03328,
-        lng: 121.53325
+        id: "lin-noodles",
+        name: "林家乾麵",
+        alias: "建中後門福州乾麵",
+        category: "staple",
+        categoryName: "經典主食",
+        tag: "老闆15年尋麵結晶",
+        signature: "福州乾麵 (傻瓜麵)",
+        desc: "位於台北城南建中側門旁的傳奇乾麵老店。老闆花費15年才尋找到完美契合的麵條比例，久拌不乾黏、不黏糊。吃的時候一定要趁熱淋上「烏醋」提香。另可切豆干、海帶、豬頭皮等美味小菜搭餐。",
+        videoTime: "05:20 - 06:10",
+        address: "台北市中正區泉州街11號",
+        lat: 25.0315,
+        lng: 121.5164
+    },
+    {
+        id: "lin-soup",
+        name: "林家乾麵「蛋包魚丸湯」",
+        alias: "糖心蛋包魚丸湯",
+        category: "hidden", // We map 'hidden' category to '鮮美湯品'
+        categoryName: "鮮美湯品",
+        tag: "手工鯊魚肉魚丸 + 糖心蛋",
+        signature: "蛋包魚丸湯",
+        desc: "林家乾麵的頂級配湯。魚丸使用鮮美鯊魚肉純手工製作，口感超級Q彈有勁；蛋包則精準煮出極致誘人的「糖心」蛋黃狀態。咬開蛋包後，讓濃郁的蛋黃流出與湯頭融合，非常推薦！",
+        videoTime: "06:10 - 07:00",
+        address: "台北市中正區泉州街11號",
+        lat: 25.0316,
+        lng: 121.5166
     }
 ];
 
 const trailsData = {
     "trail-classic": {
-        name: "經典老饕必吃路線",
-        desc: "最在地的東門市場老派風味組合！先以扎實有嚼勁的赤肉羹開胃，再品嚐客家風味米粉湯與古法滷肉飯，最後來碗手作花生豆花，甜鹹完美收尾。",
-        shops: ["red-pork-soup", "luomama-noodles", "dongmen-rice", "jiang-tofu"]
+        name: "大稻埕廟口老街線",
+        desc: "深入感受老台北的大稻埕氛圍！先造訪富商百年老宅 AKA café 品茶吃茶點，隨後漫步至慈聖宮廟埕，來盤Q彈有嚼勁的清燙發泡魷魚，再配上一口包入大塊海鰻的賴記雞捲，悠閒又愜意。",
+        shops: ["aka-cafe", "yuyubiao", "lai-jijuan"]
     },
     "trail-takeaway": {
-        name: "排隊必買伴手禮線",
-        desc: "買好買滿！外帶現烤金黃多汁的利隆餡餅，以及芝麻醬燒餅，再打包林青霞最愛的興記水餃與信遠齋煙燻滷味帶回家，與家人一同享用最地道的美味。",
-        shops: ["lilong-bakery", "mashu-pastry", "xingji-dumpling", "xinyuan-halal"]
+        name: "大橋頭大飽口福線",
+        desc: "美食與能量一次補滿！前往大橋頭品嚐米其林必比登推薦的筒仔米糕，再搭配一碗滿載鮮蚵與厚切豬肝的靈魂海陸湯，這款為苦力工人打造的精力餐能帶給您滿滿的活力！",
+        shops: ["tongzai-rice", "hailu-soup"]
     },
     "trail-hidden": {
-        name: "市場隱藏美食線",
-        desc: "老饕專屬的隱藏玩法！早上9:30準時搶購限量脆皮燒肉，配上「東門御園坊」特製的油蔥燒鴨，最後品嚐外皮Q彈爆漿的鮮肉湯圓與椒麻麵，滿足感爆棚！",
-        shops: ["secret-crispy", "secret-roast", "fujiu-tangyuan"]
+        name: "台北城南懷舊乾麵線",
+        desc: "尋找青春與回憶的美味！前往城中建中後門，享用精選麵條、配上烏醋提香的經典福州乾麵與豐富小菜，最後以純手工Q彈魚丸和金黃糖心蛋包湯做為完美的句點。",
+        shops: ["lin-noodles", "lin-soup"]
     }
 };
+
 
 // --- App State ---
 let map;
@@ -188,9 +133,9 @@ let routePolyline = null;
 function getCategoryIcon(category) {
     switch (category) {
         case "staple": return "fa-solid fa-bowl-rice";
-        case "snack": return "fa-solid fa-cookie";
-        case "dessert": return "fa-solid fa-ice-cream";
-        case "hidden": return "fa-solid fa-user-secret";
+        case "snack": return "fa-solid fa-fish";
+        case "dessert": return "fa-solid fa-cookie-bite";
+        case "hidden": return "fa-solid fa-bowl-food";
         default: return "fa-solid fa-utensils";
     }
 }
@@ -286,11 +231,11 @@ function updateFontResizerUI(activeBtn) {
 
 // --- Leaflet Map Setup ---
 function initMap() {
-    // Center map around Dongmen Market
+    // Center map to cover Dadaocheng down to Taipei City South Gate area
     map = L.map('map', {
         zoomControl: false,
         attributionControl: false
-    }).setView([25.0345, 121.5293], 17);
+    }).setView([25.048, 121.512], 14);
     
     // Add default zoom control at bottom right
     L.control.zoom({
@@ -678,8 +623,8 @@ function clearActiveTrail() {
     document.querySelectorAll(".trail-btn").forEach(b => b.classList.remove("active"));
     document.getElementById("trail-info-card").style.display = "none";
     
-    // Zoom map out to encompass all markers
-    map.setView([25.0345, 121.5293], 17);
+    // Zoom map out to encompass all markers (Dadaocheng down to South Gate)
+    map.setView([25.048, 121.512], 14);
 }
 
 // --- Mobile Navigation Responsive Layout ---

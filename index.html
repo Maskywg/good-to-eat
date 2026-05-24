@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東門市場神級老店美食地圖 - 裴社長口袋名單導覽</title>
-    <meta name="description" content="本平台收錄東門市場裴社長推薦的11家神級老店，包含東門赤肉羹、利隆餅店、羅媽媽米粉湯、東門興記與隱藏版脆皮燒肉等，配合互動式地圖與特製美食路線，帶您展開一場台北老市場的舌尖探險。">
+    <title>大稻埕與台北城百年美食地圖 - 蔣萬安市長帶路</title>
+    <meta name="description" content="本平台收錄台北大稻埕與台北城周邊經典老店與在地美食，包含郭烏隆私宅下午茶、慈聖宮清燙魷魚與雞捲、大橋頭筒仔米糕與海陸湯、建中後門林家乾麵等。配合互動式地圖與特製路線，帶您展開老城舌尖探險。">
     <!-- Google Fonts: Outfit for English/numbers, Noto Sans TC for Traditional Chinese -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for icons -->
@@ -21,8 +21,8 @@
         <div class="container header-container">
             <a href="#" class="brand-logo" id="header-logo">
                 <i class="fa-solid fa-map-location-dot brand-icon"></i>
-                <span class="brand-name">東門市場</span>
-                <span class="brand-tag">裴社長美食地圖</span>
+                <span class="brand-name">大稻埕與台北城</span>
+                <span class="brand-tag">市長帶路美食地圖</span>
             </a>
             
             <!-- Accessbility Toolbar -->
@@ -47,8 +47,8 @@
         <!-- Sidebar: Filter & List -->
         <aside class="sidebar" id="sidebar-panel">
             <div class="sidebar-header">
-                <h1>裴社長推薦神級老店</h1>
-                <p class="subtitle">精選 11 家在地經營數十年的經典美味</p>
+                <h1>市長帶路百年老店</h1>
+                <p class="subtitle">精選大稻埕與台北城周邊的歷史與在地小吃</p>
             </div>
             
             <!-- Search & Filters -->
@@ -61,41 +61,52 @@
                 <div class="category-filters">
                     <button class="filter-btn active" data-category="all" id="filter-all">全部</button>
                     <button class="filter-btn" data-category="staple" id="filter-staple">經典主食</button>
-                    <button class="filter-btn" data-category="snack" id="filter-snack">點心餅類</button>
-                    <button class="filter-btn" data-category="dessert" id="filter-dessert">甜品湯圓</button>
-                    <button class="filter-btn" data-category="hidden" id="filter-hidden">隱藏燒臘</button>
+                    <button class="filter-btn" data-category="snack" id="filter-snack">廟口小吃</button>
+                    <button class="filter-btn" data-category="hidden" id="filter-hidden">鮮美湯品</button>
+                    <button class="filter-btn" data-category="dessert" id="filter-dessert">老宅茶點</button>
                 </div>
             </div>
 
             <!-- Curated Food Trails -->
             <div class="gourmet-trails">
-                <h3><i class="fa-solid fa-route icon-margin"></i> 推薦老饕路線</h3>
+                <h3><i class="fa-solid fa-route icon-margin"></i> 推薦美食路線</h3>
                 <div class="trail-buttons">
                     <button class="trail-btn" data-trail="trail-classic" id="btn-trail-classic">
-                        <i class="fa-solid fa-award"></i> 經典必吃線
+                        <i class="fa-solid fa-award"></i> 廟口老街線
                     </button>
                     <button class="trail-btn" data-trail="trail-takeaway" id="btn-trail-takeaway">
-                        <i class="fa-solid fa-bag-shopping"></i> 排隊伴手禮線
+                        <i class="fa-solid fa-bowl-rice"></i> 大橋頭飽食線
                     </button>
                     <button class="trail-btn" data-trail="trail-hidden" id="btn-trail-hidden">
-                        <i class="fa-solid fa-user-secret"></i> 隱藏美食線
+                        <i class="fa-solid fa-map"></i> 城南懷舊線
                     </button>
                 </div>
                 <div class="trail-info-box" id="trail-info-card" style="display: none;">
                     <div class="trail-info-header">
-                        <span class="trail-name" id="trail-name-display">經典必吃線</span>
+                        <span class="trail-name" id="trail-name-display">廟口老街線</span>
                         <button class="btn-close-trail" id="btn-clear-trail" title="清除路線"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <p class="trail-desc" id="trail-desc-display">依序探索最在地的老台北風味，涵蓋主食與甜點。</p>
+                    <p class="trail-desc" id="trail-desc-display">悠遊大稻埕核心風情，品味老宅茶點與廟口經典小吃。</p>
                     <div class="trail-steps" id="trail-steps-display">
                         <!-- Dynamic Steps -->
                     </div>
                 </div>
             </div>
 
+            <!-- Mayor's Trivia Box -->
+            <div class="mayor-trivia-box">
+                <div class="trivia-header">
+                    <i class="fa-solid fa-lightbulb trivia-icon"></i>
+                    <span class="trivia-title">市長美食小知識</span>
+                </div>
+                <p class="trivia-content">
+                    深受國際觀光客喜愛的夜市美食<strong>胡椒餅</strong>，其實最早的名字是<strong>「福州餅」</strong>喔！
+                </p>
+            </div>
+
             <!-- List Count and Reset -->
             <div class="list-summary-bar">
-                <span id="shop-count">顯示 11 家店</span>
+                <span id="shop-count">顯示 7 家店</span>
                 <button class="btn-text-link" id="btn-reset-filters" style="display: none;">重設篩選</button>
             </div>
 
@@ -118,7 +129,7 @@
             </div>
             
             <!-- Map Container -->
-            <div id="map" aria-label="東門市場互動美食地圖"></div>
+            <div id="map" aria-label="大稻埕與台北城互動美食地圖"></div>
         </section>
     </main>
 
