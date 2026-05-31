@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社子島環島單車落日半日遊 - 互動導覽地圖</title>
+    <meta name="description" content="規劃您的大稻埕與社子島單車半日遊！收錄6大河岸風景、老店小吃、復古咖啡廳，搭配互動式地圖與逆時針最佳追日落路線，讓您輕鬆享受台北河畔的黃金時刻。">
+    
+    <!-- Google Fonts: Outfit for English/numbers, Noto Sans TC for Traditional Chinese -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet.js for interactive mapping -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="shezidao.css">
+</head>
+<body class="font-medium">
+
+    <!-- Header Panel -->
+    <header class="app-header">
+        <div class="container header-container">
+            <a href="#" class="brand-logo" id="header-logo">
+                <i class="fa-solid fa-bicycle brand-icon"></i>
+                <span class="brand-name">社子島單車半日遊</span>
+                <span class="brand-tag">落日逆風線</span>
+            </a>
+            
+            <!-- Accessibility & Theme Toolbar -->
+            <div class="accessibility-toolbar">
+                <!-- Font Resize -->
+                <div class="acc-control text-sizer">
+                    <span class="acc-label"><i class="fa-solid fa-text-height"></i> 字型</span>
+                    <button class="size-btn btn-sm" id="btn-font-decrease" aria-label="縮小字體">A-</button>
+                    <button class="size-btn active" id="btn-font-normal" aria-label="一般字體">中</button>
+                    <button class="size-btn btn-lg" id="btn-font-increase" aria-label="放大字體">A+</button>
+                </div>
+                <!-- Theme Toggle -->
+                <button class="theme-toggle-btn" id="btn-toggle-theme" title="切換深淺色主題" aria-label="切換深淺模式">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="app-main">
+        <!-- Sidebar: Filter & Itinerary List -->
+        <aside class="sidebar" id="sidebar-panel">
+            <div class="sidebar-header">
+                <h1>社子島環島單車落日遊</h1>
+                <p class="subtitle">從大稻埕出發，逆時針環社子島一圈的黃金路線</p>
+            </div>
+            
+            <!-- 3D Animated Hero Visual -->
+            <div class="hero-3d-wrapper">
+                <div class="hero-3d-card" id="hero-3d-card">
+                    <div class="layer background-sky"></div>
+                    <div class="layer mountain-range"></div>
+                    <div class="layer river-flow"></div>
+                    <div class="layer sun-glow"></div>
+                    <div class="layer clouds">
+                        <i class="fa-solid fa-cloud cloud-1"></i>
+                        <i class="fa-solid fa-cloud cloud-2"></i>
+                    </div>
+                    <div class="layer bike-rider">
+                        <svg class="bike-svg" viewBox="0 0 100 60">
+                            <!-- Bicycle Frame -->
+                            <path d="M 25,45 L 45,45 L 60,25 L 40,25 L 25,45 Z" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M 45,45 L 52,20 L 62,20" fill="none" stroke="var(--primary)" stroke-width="3"/>
+                            <path d="M 25,45 L 35,20 L 48,20" fill="none" stroke="var(--text-primary)" stroke-width="2"/>
+                            <!-- Wheels -->
+                            <circle cx="25" cy="45" r="12" fill="none" stroke="var(--text-primary)" stroke-width="3" class="wheel-spin"/>
+                            <circle cx="65" cy="45" r="12" fill="none" stroke="var(--text-primary)" stroke-width="3" class="wheel-spin"/>
+                            <!-- Spokes inside wheels -->
+                            <line x1="25" y1="33" x2="25" y2="57" stroke="var(--text-muted)" stroke-width="1.5"/>
+                            <line x1="13" y1="45" x2="37" y2="45" stroke="var(--text-muted)" stroke-width="1.5"/>
+                            <line x1="65" y1="33" x2="65" y2="57" stroke="var(--text-muted)" stroke-width="1.5"/>
+                            <line x1="53" y1="45" x2="77" y2="45" stroke="var(--text-muted)" stroke-width="1.5"/>
+                            <!-- Rider silhouette -->
+                            <circle cx="48" cy="12" r="5" fill="var(--primary-dark)"/>
+                            <path d="M 48,17 L 45,30 L 40,42" fill="none" stroke="var(--primary-dark)" stroke-width="3.5" stroke-linecap="round"/>
+                            <path d="M 48,17 L 58,25 L 62,20" fill="none" stroke="var(--primary-dark)" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="hero-overlay-text">
+                        <h2>大稻埕 ⇄ 社子島</h2>
+                        <p>落日單車環島行</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Summary Panel -->
+            <div class="route-summary-panel">
+                <div class="summary-item">
+                    <span class="summary-label">預估時間</span>
+                    <span class="summary-value">3.5 - 4 小時</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">騎行長度</span>
+                    <span class="summary-value">約 22 公里</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">難易度</span>
+                    <span class="summary-value level-easy">適合休閒 / 親子</span>
+                </div>
+            </div>
+
+            <!-- Route Map Filter / Search -->
+            <div class="search-filter-section">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="搜尋景點、小吃、咖啡館...">
+                </div>
+                
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all" id="filter-all">全部亮點</button>
+                    <button class="filter-btn" data-category="food" id="filter-food"><i class="fa-solid fa-utensils"></i> 小吃美食</button>
+                    <button class="filter-btn" data-category="view" id="filter-view"><i class="fa-solid fa-camera"></i> 河岸美景</button>
+                    <button class="filter-btn" data-category="cafe" id="filter-cafe"><i class="fa-solid fa-coffee"></i> 咖啡下午茶</button>
+                    <button class="filter-btn" data-category="bike" id="filter-bike"><i class="fa-solid fa-bicycle"></i> 租還車點</button>
+                </div>
+            </div>
+
+            <!-- Curated Route Guide & Toggle -->
+            <div class="gourmet-trails">
+                <h3><i class="fa-solid fa-route icon-margin"></i> 行程亮點導覽路線</h3>
+                <div class="trail-buttons">
+                    <button class="trail-btn active" data-trail="full-loop" id="btn-trail-loop">
+                        <i class="fa-solid fa-rotate-right"></i> 逆時針追日線
+                    </button>
+                    <button class="trail-btn" data-trail="food-only" id="btn-trail-food">
+                        <i class="fa-solid fa-heart"></i> 美食補給線
+                    </button>
+                    <button class="trail-btn" data-trail="view-only" id="btn-trail-view">
+                        <i class="fa-solid fa-cloud-sun"></i> 純景風光線
+                    </button>
+                </div>
+                <div class="trail-info-box" id="trail-info-card">
+                    <div class="trail-info-header">
+                        <span class="trail-name" id="trail-name-display">逆時針追日線</span>
+                    </div>
+                    <p class="trail-desc" id="trail-desc-display">從大稻埕租車，先吃台式小吃，再訪咖啡廳，回程面迎河畔金色餘暉。</p>
+                    <div class="trail-steps" id="trail-steps-display">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preparation Checklist -->
+            <div class="prep-checklist-box">
+                <div class="checklist-header">
+                    <i class="fa-solid fa-square-check checklist-icon"></i>
+                    <span class="checklist-title">行前準備與提醒</span>
+                </div>
+                <ul class="checklist-content">
+                    <li><i class="fa-solid fa-id-card"></i> <strong>已儲值的悠遊卡</strong> 或綁定行動支付（租YouBike）</li>
+                    <li><i class="fa-solid fa-glasses"></i> <strong>太陽眼鏡/防曬</strong>（下午前半段騎行會逆光）</li>
+                    <li><i class="fa-solid fa-battery-three-quarters"></i> <strong>手機與行動電源</strong>（沿路導航拍照不可少）</li>
+                    <li><i class="fa-solid fa-traffic-light"></i> <strong>注意：</strong>社子島第一辣需騎至市區道路，請注意車流</li>
+                </ul>
+            </div>
+
+            <!-- Cards Container -->
+            <div class="cards-container" id="itinerary-cards-list" role="list">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </aside>
+
+        <!-- Map Pane -->
+        <section class="map-pane">
+            <!-- Mobile Toggle Bar: Switch between List and Map view -->
+            <div class="mobile-toggle-nav">
+                <button class="mobile-nav-btn active" id="btn-show-list">
+                    <i class="fa-solid fa-list-ul"></i> 列表行程
+                </button>
+                <button class="mobile-nav-btn" id="btn-show-map">
+                    <i class="fa-solid fa-map-location-dot"></i> 互動地圖
+                </button>
+            </div>
+            
+            <!-- Map Container -->
+            <div id="map" aria-label="社子島單車路線互動地圖"></div>
+        </section>
+    </main>
+
+    <!-- JS Logic Entrance -->
+    <script src="shezidao.js"></script>
+</body>
+</html>
